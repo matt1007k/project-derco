@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
 
 /**
@@ -15,7 +16,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('cadena-valor', require('./components/CadenaValor.vue'));
+Vue.component('form-area', require('./components/FormArea.vue'));
+Vue.component('form-actividad', require('./components/FormActividad.vue'));
+Vue.component('delete-object', require('./components/DeleteObject.vue'));
 
 const app = new Vue({
     el: '#app'
