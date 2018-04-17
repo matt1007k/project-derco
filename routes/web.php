@@ -30,5 +30,10 @@ Route::resource('areas','AreaController')
     ->except([
         'index','show'
     ])->middleware('auth');
-
-    
+Route::middleware('auth')->group(function(){
+    Route::get('/factores-internos', 'HomeController@interno')->name('factores-internos');
+    Route::get('/factores-externos', 'HomeController@externo')->name('factores-externos');
+    Route::put('/actividad-interno/{activity}','ActivityController@interno')->name('actividad-interno');
+    Route::get('/actividad-interno/{id}','ActivityController@internoEdit');
+    Route::resource('missions','MissionController');
+});

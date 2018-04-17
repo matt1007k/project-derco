@@ -23,7 +23,33 @@ class ActivityController extends Controller
         $activity->area_id = $request->area_id;
         $activity->save();
     }
+    public function internoEdit($id){
+        $activity = \App\Activity::findOrFail($id);
+        return view('actividades.interno',['activity' => $activity]);
+    }
     
+    public function interno(Request $request, $id){
+        $activity = \App\Activity::findOrFail($id);         
+               
+        $activity->alta = $request->alta;        
+        $activity->media = $request->media;        
+        $activity->baja = $request->baja;        
+        $activity->muy_bueno = $request->muy_bueno;        
+        $activity->bueno = $request->bueno;        
+        $activity->deficiente = $request->deficiente;        
+        $activity->muy_deficiente = $request->muy_deficiente;
+        $valor = (($activity->alta + $activity->media + $activity->baja) * ($activity->muy_bueno + $activity->bueno + $activity->deficiente + $activity->muy_deficiente));
+                
+        $activity->valor = $valor;
+        if ($activity->save()){
+
+            return redirect()->route('factores-internos');
+        } else {
+            return back();
+        }
+
+    }
+
     public function update(Request $request)
     {
         if (!$request->ajax()) return redirect('/home');

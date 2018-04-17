@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./petisiones');
 
 
 window.Vue = require('vue');
@@ -20,6 +21,7 @@ Vue.component('cadena-valor', require('./components/CadenaValor.vue'));
 Vue.component('form-area', require('./components/FormArea.vue'));
 Vue.component('form-actividad', require('./components/FormActividad.vue'));
 Vue.component('delete-object', require('./components/DeleteObject.vue'));
+Vue.component('factor-interno', require('./components/FactorInterno.vue'));
 
 const app = new Vue({
     el: '#app'

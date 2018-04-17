@@ -7,4 +7,11 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
 
+.text-bold{
+    font-weight: bold;
+}
+.w-10{
+    width: 30px;
+}

@@ -26,4 +26,14 @@ class HomeController extends Controller
         $areas = \App\Area::all();
         return view('home',['areas'=>$areas]);
     }
+
+    public function interno(){
+        $areas = \App\Area::all();
+        return view('pages.finterno',['areas'=>$areas]);
+    }
+
+    public function externo(){
+        
+        return view('pages.fexterno');
+    }
 }
