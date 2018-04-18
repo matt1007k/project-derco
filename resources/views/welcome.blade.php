@@ -1,95 +1,35 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+@extends('layouts.app')
+@section('content')
+<div class="derco-landing" style="background-image: url({{asset('img/derco-landing.jpg')}})">
+    <div class="derco-list"> 
+        <div class="container">
+        <div class="row" >
+                <ul class="landing-list">
+                        <li class="landing-list-item"><a href="{{route('mision.vision')}} "><h4>Misión y Visión</h4> </a></li>
+                        <li class="landing-list-item"><a href="{{route('valores')}} "><h4>Valores</h4></a></li>
+                        <ul class="landing-list">
+                            <li class="landing-list-item"><a href="#"><h4>Organigrama</h4></a></li>
+                            <li class="landing-list-item"><a href="{{route('home')}}"><h4>Cadena de Valor</h4></a></li>
+                            <li class="landing-list-item"><a href="#"><h4>Macroproceso</h4></a></li>
+                            <ul class="landing-list">
+                                <li class="landing-list-item"><h4>Análisis FODA</h4></li>
+                                <li class="landing-list-item"><a href="{{route('factores-internos')}} "><h4>Fortalezas y Debilidades</h4></a></li>
+                                <li class="landing-list-item"><a href="{{route('factores-externos')}} "><h4>Oportunidades y Amenazas</h4></a></li>
+                                <ul class="landing-list">
+                                        <li class="landing-list-item"><a href="#"><h4>Matriz FODA</h4></a></li>
+                                        <li class="landing-list-item"><a href="#"><h4>Mapa</h4></a></li>
+                                        <li class="landing-list-item"><a href="#"><h4>Maestro</h4></a></li>
+                                        <li class="landing-list-item"><a href="#"><h4>Perpectivas</h4></a></li>
+                                </ul>
+                            </ul>
+                        </ul>
+                        
+                    </ul>
         </div>
-    </body>
-</html>
+        </div>
+    </div>
+</div>
+@endsection
+        
+
+            

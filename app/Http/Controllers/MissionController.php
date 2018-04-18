@@ -3,82 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mission;
 
 class MissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function create(){
+        return view('mision.create');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request){
+        $mission = new \App\mission();
+        $mission->nombre = $request->nombre;
+        if ($mission->save()){
+            return redirect()->route('mision.vision')
+                ->with('info', 'Misión registrada con exitó');
+        }else{
+            return back();
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function edit($id){
+        $mission = mission::findOrFail($id);
+        return view('mision.edit',['mission' => $mission]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function update(Request $request, $id){
+        $mission = mission::findOrFail($id);
+        $mission->nombre = $request->nombre;
+        if ($mission->save()){
+            return redirect()->route('mision.vision')
+            ->with('info', 'Misión editada con exitó');
+        }else{
+            return back();
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $mission = mission::findOrFail($id);
+        
+        if ($mission->delete()){
+            return redirect()->route('mision.mission')
+                ->with('info', 'Misión eliminada con exitó');
+        }else{
+            return back();
+        }
     }
 }

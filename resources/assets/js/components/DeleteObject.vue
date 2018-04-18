@@ -31,8 +31,7 @@ export default {
                     const row_id = document.getElementById(`fila${id}`);
                     axios.delete(`/${this.modelo}/`+ id)
                     .then(response =>{
-                        
-
+                    
                         row_id.remove();
                         swal(
                         'Eliminado!',

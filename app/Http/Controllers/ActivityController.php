@@ -21,6 +21,14 @@ class ActivityController extends Controller
         $activity = new \App\Activity();
         $activity->nombre = $request->nombre;
         $activity->area_id = $request->area_id;
+        $activity->alta = 0;        
+        $activity->media = 0;        
+        $activity->baja = 0;        
+        $activity->muy_bueno = 0;        
+        $activity->bueno = 0;        
+        $activity->deficiente = 0;        
+        $activity->muy_deficiente = 0;
+        $activity->valor = 0;
         $activity->save();
     }
     public function internoEdit($id){

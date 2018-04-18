@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vision;
+use App\Mission;
+use App\Value;
 
 class HomeController extends Controller
 {
@@ -13,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**
@@ -33,7 +36,20 @@ class HomeController extends Controller
     }
 
     public function externo(){
-        
-        return view('pages.fexterno');
+        $fuerzas = \App\Force::all();
+        return view('pages.fexterno',['fuerzas'=>$fuerzas]);
+    }
+
+    public function misionVision(){
+        $mission = Mission::get()->first();
+        $vision = Vision::get()->first();
+
+        return view('pages.mision-vision',['mission'=>$mission, 'vision'=>$vision]);
+    }
+
+    public function valores(){
+        $valores = Value::all();
+
+        return view('pages.valores',['valores'=>$valores]);
     }
 }

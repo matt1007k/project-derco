@@ -18,22 +18,31 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/factores-internos', 'HomeController@interno')->name('factores-internos');
+Route::get('/factores-externos', 'HomeController@externo')->name('factores-externos');
 
-Route::get('/create-actividad/{area_id}','ActivityController@new')->name('create-actividad');
-Route::put('/actividad/actualizar', 'ActivityController@update')->middleware('auth');
 
-Route::resource('activities', 'ActivityController')
-    ->except([
-        'index', 'show','update'
-    ])->middleware('auth');
-Route::resource('areas','AreaController')
-    ->except([
-        'index','show'
-    ])->middleware('auth');
+    
+Route::get('/mision-vision', 'HomeController@misionVision')->name('mision.vision');
+Route::get('/valores', 'HomeController@valores')->name('valores');
+    
 Route::middleware('auth')->group(function(){
-    Route::get('/factores-internos', 'HomeController@interno')->name('factores-internos');
-    Route::get('/factores-externos', 'HomeController@externo')->name('factores-externos');
-    Route::put('/actividad-interno/{activity}','ActivityController@interno')->name('actividad-interno');
+    Route::get('/create-actividad/{area_id}','ActivityController@new')->name('create-actividad');
+    Route::put('/actividad/actualizar', 'ActivityController@update');
+
+            
     Route::get('/actividad-interno/{id}','ActivityController@internoEdit');
-    Route::resource('missions','MissionController');
+    Route::put('/actividad-interno/{activity}','ActivityController@interno')->name('actividad-interno');
+    Route::put('/actividad-externo/{claves}','ClavesController@externo')->name('actividad-externo');
+    Route::get('/actividad-externo/{id}','ClavesController@externoEdit');
+        
+    Route::get('/claves/create/{id}', 'ClavesController@create')->name('claves.create');
+        
+    Route::resource('activities', 'ActivityController')->except(['index', 'show','update']);       
+    Route::resource('areas','AreaController')->except(['index','show']);
+    Route::resource('missions','MissionController')->except(['index','show']);
+    Route::resource('visions','VisionController')->except(['index','show']);
+    Route::resource('valores','ValoresController')->except(['index','show']);    
+    Route::resource('fuerzas','FuerzasController')->except(['show']);    
+    Route::resource('claves','ClavesController')->except(['index','show','create']);    
 });
