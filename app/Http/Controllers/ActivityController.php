@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Activity;
 
 
 class ActivityController extends Controller
@@ -70,5 +71,10 @@ class ActivityController extends Controller
     public function destroy($id){
         \App\Activity::findOrFail($id)->delete();
         
+    }
+
+    public function fortalezas(){
+        $activities = Activity::all();
+        return $activities;
     }
 }

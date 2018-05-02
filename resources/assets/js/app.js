@@ -22,7 +22,12 @@ Vue.component('form-area', require('./components/FormArea.vue'));
 Vue.component('form-actividad', require('./components/FormActividad.vue'));
 Vue.component('delete-object', require('./components/DeleteObject.vue'));
 Vue.component('factor-interno', require('./components/FactorInterno.vue'));
+Vue.component('matriz-foda', require('./components/MatrizFoda.vue'));
+Vue.component('foda', require('./components/Foda.vue'));
+
+const store = require('./store/index');
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });

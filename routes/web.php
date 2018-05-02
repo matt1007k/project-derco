@@ -20,11 +20,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/factores-internos', 'HomeController@interno')->name('factores-internos');
 Route::get('/factores-externos', 'HomeController@externo')->name('factores-externos');
-
-
     
 Route::get('/mision-vision', 'HomeController@misionVision')->name('mision.vision');
 Route::get('/valores', 'HomeController@valores')->name('valores');
+
+// Vesion 1.2
+Route::get('/organigrama', 'HomeController@organigrama')->name('organigrama');
+Route::get('/macroproceso', 'HomeController@macroproceso')->name('macroproceso');
+Route::get('/matriz-foda', 'HomeController@matrizFoda')->name('matriz-foda');
+Route::get('/fce-cd', 'HomeController@fceCd')->name('fce-cd');
+Route::get('/mapa-estrategico', 'HomeController@mapaEstrategico')->name('mapa-estrategico');
+Route::get('/foda', 'HomeController@foda')->name('foda');
     
 Route::middleware('auth')->group(function(){
     Route::get('/create-actividad/{area_id}','ActivityController@new')->name('create-actividad');
@@ -38,11 +44,15 @@ Route::middleware('auth')->group(function(){
         
     Route::get('/claves/create/{id}', 'ClavesController@create')->name('claves.create');
         
-    Route::resource('activities', 'ActivityController')->except(['index', 'show','update']);       
+    Route::resource('activities', 'ActivityController')->except([ 'show','update']);       
     Route::resource('areas','AreaController')->except(['index','show']);
     Route::resource('missions','MissionController')->except(['index','show']);
     Route::resource('visions','VisionController')->except(['index','show']);
     Route::resource('valores','ValoresController')->except(['index','show']);    
     Route::resource('fuerzas','FuerzasController')->except(['show']);    
-    Route::resource('claves','ClavesController')->except(['index','show','create']);    
+    Route::resource('claves','ClavesController')->except(['index','show','create']); 
+    
+    
+    // Vesion 1.2    
+    Route::get('/fortalezas', 'ActivityController@fortalezas')->name('fortalezas');
 });

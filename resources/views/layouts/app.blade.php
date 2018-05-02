@@ -20,9 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Editable bootstrap -->
-    <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/bootstrap-editable.min.js') }}" defer></script>
+   
 </head>
 <body>
     <div id="app">

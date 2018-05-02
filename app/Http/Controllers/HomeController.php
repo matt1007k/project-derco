@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Activity;
 use App\Vision;
 use App\Mission;
 use App\Value;
@@ -51,5 +52,30 @@ class HomeController extends Controller
         $valores = Value::all();
 
         return view('pages.valores',['valores'=>$valores]);
+    }
+
+    public function organigrama(){
+        return view('pages.organigrama');
+    }
+
+    public function macroproceso(){
+        return view('pages.macroproceso');
+    }
+
+    public function foda(){
+        return view('pages.foda');
+    }
+    
+    public function matrizFoda(){
+        return view('pages.matrizFoda');
+    }
+    
+    public function fceCd(){
+        $activities = Activity::all();
+        return view('pages.fceCd',['activities' => $activities]);
+    }
+
+    public function mapaEstrategico(){
+        return view('pages.mapaEstrategico');
     }
 }
