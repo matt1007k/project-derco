@@ -12,8 +12,19 @@
             </nav>
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <h2>Evaluando Fortalezas y Debilidad</h2>
+                    <div class="row">                        
+                        @guest
+                        <div class="col-12">
+                            <h2>Evaluando Fortalezas y Debilidad</h2>
+                        </div>
+                        @else
+                        <div class="col-10">
+                            <h2>Evaluando Fortalezas y Debilidad</h2>
+                        </div> 
+                        <div class="col-md-2">
+                            <a href="{{route('matriz-foda')}} " class="btn btn-success">Matriz foda</a>
+                        </div>  
+                        @endguest
                     </div>                  
                 </div>
 

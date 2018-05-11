@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Activity;
+use App\Fortaleza;
+use App\Debilidad;
+
 
 
 class ActivityController extends Controller
@@ -36,7 +39,7 @@ class ActivityController extends Controller
         $activity = \App\Activity::findOrFail($id);
         return view('actividades.interno',['activity' => $activity]);
     }
-    
+    // Matriz FODA 
     public function interno(Request $request, $id){
         $activity = \App\Activity::findOrFail($id);         
                
@@ -51,8 +54,91 @@ class ActivityController extends Controller
                 
         $activity->valor = $valor;
         if ($activity->save()){
+            $fortaleza = Fortaleza::where('activity_id', $activity->id)->first();
+            $debilidad = Debilidad::where('activity_id', $activity->id)->first();
 
-            return redirect()->route('factores-internos');
+            if($fortaleza){
+                if($activity->valor < 0){
+                    $numero = 1;
+                    $fortaleza->delete();
+                    // Actualizamos el slug en orden ascendente
+                    $slugUpdate = Fortaleza::all();
+                    if (count($slugUpdate) > 0){
+                        foreach ($slugUpdate as $key => $value) {
+                            $value->slug = 'F'.$numero++;
+                            $value->save();
+                        }
+                    }
+                    // Copiamos a las debilidades
+                    $length = Debilidad::all();
+                    $debilidad = new Debilidad();
+                    $debilidad->nombre = $activity->nombre;
+                    $debilidad->slug = 'D'.($length->count() + 1);
+                    $debilidad->activity_id = $fortaleza->activity_id;
+                    $debilidad->save();
+                }else{
+                    /*$slug = substr($fortaleza->slug, 1);
+                    //$slug = explode(" ",$total);
+                    //dd($slug);
+                    $total = 0;
+                    $slug = 0;
+                    $fortaleza = Fortaleza::all();
+                    for ($i=0; $i < count($fortaleza); $i++) { 
+                        $total .= $fortaleza[$i]['slug'];
+                        $number = str_split($total, 1);
+                        if (($number % 2) == 0)
+                        {
+
+                            dd($number);
+                        }
+                    }*/
+                    return redirect()->route('factores-internos')->with('info', 'Evaluación no ha sido modificada');
+                }
+            }else if($debilidad){
+                if($activity->valor > 0){
+                    $numero = 1;
+                    $debilidad->delete();
+                    // Actualizamos el slug en orden ascendente
+                    $slugUpdate = Debilidad::all();
+                    if(count($slugUpdate) > 0) {
+                        foreach ($slugUpdate as $key => $value) {
+                            $value->slug = 'F'.$numero++;
+                            $value->save();
+                        }
+                    }
+                    // Copiamos a las fortalezas
+                    $length = Fortaleza::all();                    
+                    $fortaleza = new Fortaleza();
+                    $fortaleza->nombre = $activity->nombre;
+                    $fortaleza->slug = 'F'.($length->count() + 1);
+                    $fortaleza->activity_id = $debilidad->activity_id;
+                    $fortaleza->save();
+                }else{
+                    return redirect()->route('factores-internos')->with('info', 'Evaluación no ha sido modificada');
+                    
+                }
+            } else {
+                if($activity->valor > 0){
+                    $length = Fortaleza::all();
+                    $fortaleza = new Fortaleza();
+                    $fortaleza->nombre = $activity->nombre;
+                    $fortaleza->slug = 'F'.($length->count() + 1);
+                    $fortaleza->activity_id = $activity->id;
+                    $fortaleza->save();
+                }else if ($activity->valor < 0){
+                    
+                    $length = Debilidad::all();
+                    $debilidad = new Debilidad();
+                    $debilidad->nombre = $activity->nombre;
+                    $debilidad->slug = 'D'.($length->count() + 1);
+                    $debilidad->activity_id = $activity->id;
+                    $debilidad->save();
+                    
+                }
+            }             
+            
+              
+            return redirect()->route('factores-internos')->with('info', 'Evaluación realizada correctamente');
         } else {
             return back();
         }
@@ -74,7 +160,11 @@ class ActivityController extends Controller
     }
 
     public function fortalezas(){
-        $activities = Activity::all();
-        return $activities;
+        $fortalezas = Fortaleza::all();
+        return $fortalezas;
+    }
+    public function debilidades(){
+        $debilidades = Debilidad::all();
+        return $debilidades;
     }
 }

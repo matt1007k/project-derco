@@ -51,12 +51,14 @@
                         <li><a class="nav-link" href="{{ route('home') }}">{{ __('Cadena de valor') }}</a></li>
                         <li><a class="nav-link" href="{{ route('factores-internos') }}">{{ __('Factores Internos') }}</a></li>
                         <li><a class="nav-link" href="{{ route('factores-externos') }}">{{ __('Factores Externos') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('matriz-foda') }}">{{ __('Matriz FODA') }}</a></li>
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('fuerzas.index')}} " class="dropdown-item"> Fuerzas de Porter</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

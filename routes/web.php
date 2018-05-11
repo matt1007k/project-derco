@@ -55,4 +55,7 @@ Route::middleware('auth')->group(function(){
     
     // Vesion 1.2    
     Route::get('/fortalezas', 'ActivityController@fortalezas')->name('fortalezas');
+    Route::get('/debilidades', 'ActivityController@debilidades')->name('debilidades');
+    Route::get('/oportunidades', 'ClavesController@oportunidades')->name('oportunidades');
+    Route::get('/amenazas', 'ClavesController@amenazas')->name('amenazas');
 });

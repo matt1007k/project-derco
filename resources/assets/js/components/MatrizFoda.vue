@@ -7,13 +7,21 @@
             <div class="col-md-4 col-xs-12 border-1" style="border: 1px solid black">
                 <h3 class="text-center">Fortalezas</h3>
                 <ul class="list-group" >
-                    <li class="list-group-item list-group-item-action"  @click="selectActivity()" v-for="(fortaleza, index) in fortalezas" :key="fortaleza.id" :class="{active:selected}"><span>F{{fortaleza.id}}</span> {{fortaleza.nombre}}</li>                                    
+                    <li class="list-group-item list-group-item-action"  
+                        @click="selectActivity()" 
+                        v-for="fortaleza in fortalezas" :key="fortaleza.id" 
+                        :class="{active:selected}">
+                            <span>{{fortaleza.slug}}</span> - {{fortaleza.nombre}}
+                    </li>                                    
                 </ul>
             </div>
             <div class="col-md-4 col-xs-12 border-1" style="border: 1px solid black">
                 <h3 class="text-center">Debilidades</h3>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action" ><i class="fa fa-check"></i>EDads</li>                                    
+                    <li class="list-group-item list-group-item-action" 
+                        v-for="debilidad in debilidades" :key="debilidad.id">
+                        <span>{{debilidad.slug}}</span> - {{debilidad.nombre}}
+                    </li>                                    
                 </ul>
             </div>
         </div>
@@ -21,7 +29,10 @@
             <div class="col-md-4 col-xs-12 border-1">
                 <h3 class="text-center">Oportunidades</h3>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"><i class="fa fa-check"></i>EDads</li>                                    
+                    <li class="list-group-item list-group-item-action" 
+                        v-for="oportunidad in oportunidades" :key="oportunidad.id">
+                        <span>{{oportunidad.slug}}</span> - {{oportunidad.nombre}}
+                    </li>                                   
                 </ul>
             </div>  
             <div class="col-md-4 col-xs-12 border-1">
@@ -41,7 +52,10 @@
             <div class="col-md-4 col-xs-12 border-1">
                 <h3 class="text-center">Amenazas</h3>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"><i class="fa fa-check"></i>EDads</li>                                    
+                    <li class="list-group-item list-group-item-action" 
+                        v-for="amenaza in amenazas" :key="amenaza.id">
+                        <span>{{amenaza.slug}}</span> - {{amenaza.nombre}}
+                    </li>                                     
                 </ul>
             </div>  
             <div class="col-md-4 col-xs-12 border-1">
@@ -66,26 +80,50 @@ export default {
         return{
             selected: false,
             fortalezas: [],
-            debilidades: {},
-            amenazas: {},
-            oportunidades: {}
+            debilidades: [],
+            amenazas: [],
+            oportunidades: []
         }
     }, 
     methods:{
         selectActivity(){
             this.selected = !this.selected;
         },
-        allActivities(){
+        allFortalezas(){
             axios.get('/fortalezas')
             .then(res => {
                 this.fortalezas = res.data;
+            })
+            .catch(err => console.log(err));
+        },
+        allDebilidades(){
+            axios.get('/debilidades')
+            .then(res => {
+                this.debilidades = res.data;
+            })
+            .catch(err => console.log(err));
+        },
+        allOportunidades(){
+            axios.get('/oportunidades')
+            .then(res => {
+                this.oportunidades = res.data;
+            })
+            .catch(err => console.log(err));
+        },
+        allAmenazas(){
+            axios.get('/amenazas')
+            .then(res => {
+                this.amenazas = res.data;
             })
             .catch(err => console.log(err));
         }
 
     },
     created(){
-        this.allActivities();
+        this.allFortalezas();
+        this.allDebilidades();
+        this.allOportunidades();
+        this.allAmenazas();
     }
 
 }

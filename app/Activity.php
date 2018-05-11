@@ -14,4 +14,14 @@ class Activity extends Model
     public function area(){
         return $this->belongsTo('App\Area');
     }
+
+    public function fortaleza()
+    {
+        return $this->belongsTo('App\Fortaleza');
+    }
+
+    public function debilidad()
+    {
+        return $this->belongsTo('App\Debilidad');
+    }
 }

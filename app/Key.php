@@ -14,4 +14,14 @@ class Key extends Model
     public function force(){
         return $this->belongsTo('App\Force');
     }
+
+    public function amenaza()
+    {
+        return $this->belongsTo('App\Amenaza');
+    }
+
+    public function oportunidad()
+    {
+        return $this->belongsTo('App\Oportunidad');
+    }
 }
