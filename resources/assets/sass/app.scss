@@ -9,6 +9,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~font-awesome/scss/font-awesome';
 
+
 .text-bold{
     font-weight: bold;
 }
@@ -23,6 +24,21 @@
 }
 .text-red{
     color: red;
+}
+.bg-red{
+    background-color: #DC241F;
+}
+.mt-foda{
+    margin-right:6px; 
+    cursor:pointer;
+}
+.selected_foda{
+    background-color: #c2c2c2;  
+    cursor: default;  
+}
+
+.full-width{
+    width: 100%;
 }
 .derco-landing{
     height: 80vh;
@@ -67,4 +83,16 @@
 }
 .border-1{
     border: 1px solid black;
+}
+.padding-bottom-small{
+    padding-bottom: 10px;
+}
+.no-padding-left{
+    padding-left: 0;
+}
+.no-padding-right{
+    padding-right: 0;
+}
+.no-padding{
+    padding: 0;
 }

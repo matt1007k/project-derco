@@ -102,7 +102,7 @@ class ActivityController extends Controller
                     $slugUpdate = Debilidad::all();
                     if(count($slugUpdate) > 0) {
                         foreach ($slugUpdate as $key => $value) {
-                            $value->slug = 'F'.$numero++;
+                            $value->slug = 'D'.$numero++;
                             $value->save();
                         }
                     }

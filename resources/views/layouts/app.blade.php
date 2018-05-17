@@ -19,12 +19,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    
    
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-red">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     BSC Derco
@@ -59,6 +60,9 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('fuerzas.index')}} " class="dropdown-item"> Fuerzas de Porter</a>
+                                    <a href="{{ route('foda')}} " class="dropdown-item"> Estrategias FODA</a>
+                                    <a href="{{ route('objetivos')}} " class="dropdown-item">Objetivos</a>
+                                    <a href="{{ route('mapa-estrategico')}} " class="dropdown-item">Mapa</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

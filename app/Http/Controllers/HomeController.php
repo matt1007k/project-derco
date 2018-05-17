@@ -8,6 +8,10 @@ use App\Vision;
 use App\Mission;
 use App\Value;
 
+use App\Estrategia;
+use App\Objetivo;
+use App\Mapa;
+
 class HomeController extends Controller
 {
     /**
@@ -76,6 +80,16 @@ class HomeController extends Controller
     }
 
     public function mapaEstrategico(){
-        return view('pages.mapaEstrategico');
+        $mapas = Mapa::orderBy('id','ASC')->get();
+        return view('pages.mapaEstrategico',['mapas' => $mapas]);
+    }
+
+    public function objetivos(){
+        $objetivos = Objetivo::paginate(6);
+        
+        return view('pages.objetivos',
+                [
+                    'objetivos' => $objetivos
+                ]);
     }
 }

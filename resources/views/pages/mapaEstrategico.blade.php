@@ -20,7 +20,32 @@
                 </div>
 
                 <div class="card-body ">
-                    
+                    <table class="table table-responsive">
+                        @foreach ($mapas as $mapa)
+                            <tr >
+                                <td style="height: 100%;" class="text-center">
+                                    <div class="alert alert-danger " style="height: 100%;" role="alert">
+                                        <h4 class="alert-heading">{{$mapa->nombre}}</h4>                                                
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        @foreach ($mapa->objetivos as $objetivo)
+                                        <div class="col-md-4">
+                                            <div class="alert alert-primary" role="alert">
+                                                F1-{{$objetivo->nombre}}                                                 
+                                            </div>
+                                        </div>
+                                        @endforeach  
+                                    </div>
+                                </td>
+                            </tr> 
+                        @endforeach
+                        
+                        
+                        
+                    </table>
+                              
                 </div>
             </div>
         </div>
