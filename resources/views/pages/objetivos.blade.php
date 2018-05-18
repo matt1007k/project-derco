@@ -36,7 +36,7 @@
                                 @foreach ($objetivos as $objetivo)
                                    
                                     <tr>
-                                        <td>{{$objetivo->id}}</td>
+                                        <td>{{$objetivo->slug}}</td>
                                         <td>{{$objetivo->nombre}}</td>
                                         @if(count($objetivo->estrategias) > 0)
                                             <td>                                                                                                            

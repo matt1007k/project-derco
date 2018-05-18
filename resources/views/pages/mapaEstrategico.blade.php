@@ -20,32 +20,45 @@
                 </div>
 
                 <div class="card-body ">
-                    <table class="table table-responsive">
-                        @foreach ($mapas as $mapa)
-                            <tr >
-                                <td style="height: 100%;" class="text-center">
-                                    <div class="alert alert-danger " style="height: 100%;" role="alert">
-                                        <h4 class="alert-heading">{{$mapa->nombre}}</h4>                                                
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        @foreach ($mapa->objetivos as $objetivo)
-                                        <div class="col-md-4">
-                                            <div class="alert alert-primary" role="alert">
-                                                F1-{{$objetivo->nombre}}                                                 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-responsive">
+                                @foreach ($mapas as $mapa)
+                                    <tr>
+                                        <td style="height: 100%;" class="text-center">
+                                            <div class="alert alert-{{ $mapa->slug == 'FI' ? 'danger' : 'success' }}" style="height: 100%; ">
+                                                <h4 class="alert-heading">{{$mapa->nombre}}</h4>                                                
                                             </div>
-                                        </div>
-                                        @endforeach  
-                                    </div>
-                                </td>
-                            </tr> 
-                        @endforeach
-                        
-                        
-                        
-                    </table>
-                              
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                @foreach ($mapa->objetivos as $objetivo)
+                                                <div class="col-md-4">
+                                                    <div class="alert alert-{{ $mapa->slug == 'FI' ? 'success' : 'primary' }}" role="alert">
+                                                        {{$objetivo->slug}}-{{$objetivo->nombre}}                                                 
+                                                    </div>
+                                                </div>
+                                                @endforeach  
+                                            </div>
+                                        </td>
+                                    </tr> 
+                                @endforeach
+                                
+                                
+                                
+                            </table>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center">Relaciones de Objetivos</h2>
+                        </div>
+                    </div>   
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

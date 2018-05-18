@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('estrategias','EstrategiasController')->except(['index','show','create','edit']);
     Route::resource('objetivos','ObjetivosController')->except(['index','show','edit']);
-    Route::resource('mapas','MapasController')->except(['index','show','create','edit']);
+    Route::resource('mapas','MapasController')->except(['index','show','edit']);
 
     Route::put('/asignar/{objetivo}', 'ObjetivosController@asignar')->name('objetivos.asignar');
     // Vesion 1.2

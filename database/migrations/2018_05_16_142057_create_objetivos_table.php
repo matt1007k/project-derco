@@ -15,6 +15,7 @@ class CreateObjetivosTable extends Migration
     {
         Schema::create('objetivos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slug', 50); 
             $table->string('nombre', 300);            
             $table->unsignedInteger('mapa_id');
             $table->foreign('mapa_id')->references('id')

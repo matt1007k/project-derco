@@ -7,14 +7,26 @@ use App\Mapa;
 
 class MapasController extends Controller
 {
+    public function create(){
+        return view('mapas.create');
+    }
+
     public function store(Request $request)
     {
-        $mapa = new Mapa();
+        $mapa = new Mapa(); 
+        // Obtenemos las 2 primeras letras       
+        $dos_letras = substr($request->nombre, 0, 2);
+        // Convertimos en mayusculas  
+        $slug = strtoupper($dos_letras); 
+
         $mapa->nombre = $request->nombre;
+        $mapa->slug = $slug;
         $mapa->save();
         
-        return redirect()->route('mapa-estrategico')
-                ->with('info', 'Mapa registrado con exitó');
+        return redirect()->route('objetivos.create')
+                ->with('info', 'Categoria registrado con exitó');
+        
+        
     }
 
     
@@ -29,11 +41,17 @@ class MapasController extends Controller
     public function update(Request $request, $id)
     {
         $mapa = mapa::findOrFail($id);
+        // Obtenemos las 2 primeras letras       
+        $dos_letras = substr($request->nombre, 0, 2);
+        // Convertimos en mayusculas  
+        $slug = strtoupper($dos_letras); 
+
         $mapa->nombre = $request->nombre;
+        $mapa->slug = $slug;
         $mapa->save();
 
-        return redirect()->route('mapa-estrategico')
-                ->with('info', 'mapa actualizado con exitó');
+        return redirect()->route('objetivos.create')
+                ->with('info', 'Categoria actualizado con exitó');
     }
 
     /**
@@ -47,7 +65,7 @@ class MapasController extends Controller
         $mapa = mapa::findOrFail($id);
         $mapa->delete();
 
-        return redirect()->route('mapa-estrategico')
-                ->with('info', 'mapa eliminado con exitó');
+        return redirect()->route('objetivos.create')
+                ->with('info', 'Categoria eliminado con exitó');
     }
 }
